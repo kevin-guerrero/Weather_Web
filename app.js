@@ -13,5 +13,12 @@ async function obtenerTiempo(ciudadBuscada) {
     }
 }
 
+const inputEnviar = document.getElementById("submit")
+
+inputEnviar.addEventListener("click", function() {
+    let inputUsuari = document.getElementById("busquedad").value;
+    obtenerTiempo(inputUsuari);
+});
+
 // Pruebas
-obtenerTiempo("Barcelona")
+//obtenerTiempo("Barcelona")
