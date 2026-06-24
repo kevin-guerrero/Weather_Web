@@ -8,16 +8,34 @@ async function obtenerTiempo(ciudadBuscada) {
         // Resulados de la respuesta que devuelve OpenWeatherMap en la consola
         console.log(datosDelTiempo);
 
+        // TODO: Pintar aqui los resultados o hacer una función que lo haga
+
     } catch (error) {
         console.error("Error al obtener el tiempo:", error);
     }
-}
+};
 
-const inputEnviar = document.getElementById("submit")
+// Boton submit
+const inputEnviar = document.getElementById("submit");
 
+// div weather section donde se mostrara la info
+const weatherSection = document.getElementById("weatherSection"); 
+
+// Evento cuando el usuario introduce una ciudad
 inputEnviar.addEventListener("click", function() {
     let inputUsuari = document.getElementById("busquedad").value;
-    obtenerTiempo(inputUsuari);
+    weatherSection.style.display = "block";
+    if(inputUsuari == "") {
+        weatherSection.innerHTML = `
+        <div> 
+            <h2> ERROR: No se ha introducido ninguna ciudad </h2>
+            <p> Por favor intentelo de nuevo con una <u> ciudad validad</u> . </p>
+        </div>
+        `;
+        return;
+    }else {
+        obtenerTiempo(inputUsuari);
+    }
 });
 
 // Pruebas
