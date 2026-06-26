@@ -33,18 +33,29 @@ function pintarResultados(datosDelTiempo) {
 
     // Pintar los resultados en la página
     datosDelTiempo.weather.forEach(clima => {
+        // Crear elementos
         const descripcion = document.createElement('p');
         const imagen = document.createElement('img');
 
         descripcion.textContent = `${clima.description}`;
         imagen.src = `https://openweathermap.org/img/wn/${clima.icon}.png`;
-        imagen.alt = `https://openweathermap.org/img/wn/${clima.description}`
+        imagen.alt = `https://openweathermap.org/img/wn/${clima.description}`;
 
         weatherSection.appendChild(descripcion);
         weatherSection.appendChild(imagen);
     });
+
+    //Prueba
+    let gradosPrueba = 306.57
+    console.log(calcularGrados(gradosPrueba))
 }
 
+function calcularGrados(kelvin) {
+    let gradosSinRedondear = kelvin - 273.15;
+    let gradosCelsius = Math.round(gradosSinRedondear);
+
+    return grados;
+}
 
 // Evento cuando el usuario introduce una ciudad
 inputEnviar.addEventListener("click", async (event)=> {
