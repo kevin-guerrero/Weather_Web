@@ -54,7 +54,7 @@ function calcularGrados(kelvin) {
     let gradosSinRedondear = kelvin - 273.15;
     let gradosCelsius = Math.round(gradosSinRedondear);
 
-    return grados;
+    return gradosCelsius;
 }
 
 // Evento cuando el usuario introduce una ciudad
