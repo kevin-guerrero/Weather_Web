@@ -50,6 +50,11 @@ function pintarResultados(datosDelTiempo) {
     console.log(calcularGrados(gradosPrueba))
 }
 
+/**
+ * Función que convierte de kelvin a grados celsius.
+ * @param {Number} kelvin - La temperatura en Kelvin.
+ * @returns gradosCelsius redondeados, ejemplo: (K: 306.57 | C°: 33).
+ */
 function calcularGrados(kelvin) {
     let gradosSinRedondear = kelvin - 273.15;
     let gradosCelsius = Math.round(gradosSinRedondear);
