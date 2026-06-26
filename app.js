@@ -45,9 +45,13 @@ function pintarResultados(datosDelTiempo) {
         weatherSection.appendChild(imagen);
     });
 
-    //Prueba
-    let gradosPrueba = 306.57
-    console.log(calcularGrados(gradosPrueba))
+    const gradosElemento = document.createElement('p');
+    const gradosValue = datosDelTiempo.main.temp;
+    const temperatura = calcularGrados(gradosValue);
+
+    gradosElemento.textContent = `Temperatura: ${temperatura} C°`;
+
+    weatherSection.appendChild(gradosElemento);
 }
 
 /**
