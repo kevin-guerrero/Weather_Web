@@ -31,7 +31,7 @@ async function obtenerTiempo(ciudadBuscada) {
 
 function pintarResultados(datosDelTiempo) {
 
-    // Pintar los resultados en la página
+    // Mostrar descripción del clima
     datosDelTiempo.weather.forEach(clima => {
         // Crear elementos
         const descripcion = document.createElement('p');
@@ -45,13 +45,34 @@ function pintarResultados(datosDelTiempo) {
         weatherSection.appendChild(imagen);
     });
 
+    // TODO: Optimizar esto ya que el código se repite
+
+    // Mostrar los resultados principales (Temperatura, temperatura min y max, humedad...)
+
+    // Crear elementos
     const gradosElemento = document.createElement('p');
+    const gradosElementoTempMin = document.createElement('p');
+    const gradosElementoTempMax = document.createElement('p');
+    
+    // Pillar valor
     const gradosValue = datosDelTiempo.main.temp;
+    const gradosValueTempMin = datosDelTiempo.main.temp_min;
+    const gradosValueTempMax = datosDelTiempo.main.temp_max;
+
+    // Convertir a grados celsius
     const temperatura = calcularGrados(gradosValue);
+    const temperaturaMin = calcularGrados(gradosValueTempMin)
+    const temperaturaMax = calcularGrados(gradosValueTempMax)
 
+    // Poner la info en los elementos
     gradosElemento.textContent = `Temperatura: ${temperatura} C°`;
+    gradosElementoTempMin.textContent = `Temperatura Mínima: ${temperaturaMin} C°`;
+    gradosElementoTempMax.textContent = `Temperatura Máxima: ${temperaturaMax} C°`;
 
+    // Agregar elementos a la web
     weatherSection.appendChild(gradosElemento);
+    weatherSection.appendChild(gradosElementoTempMin);
+    weatherSection.appendChild(gradosElementoTempMax);
 }
 
 /**
