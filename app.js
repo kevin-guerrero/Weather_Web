@@ -33,7 +33,7 @@ function pintarResultados(datosDelTiempo) {
 
     // Mostrar descripción del clima
     datosDelTiempo.weather.forEach(clima => {
-        creadorDeElementosInfo('p', clima.description, false, "", "");
+        crearElementoClima('p', clima.description, false, "", "");
         const imagen = document.createElement('img');
 
         imagen.src = `https://openweathermap.org/img/wn/${clima.icon}.png`;
@@ -43,10 +43,10 @@ function pintarResultados(datosDelTiempo) {
     });
 
     // Mostrar los resultados principales (Temperatura, temperatura min y max, humedad...)
-    creadorDeElementosInfo('p', datosDelTiempo.main.temp, true, "Temperatura: ", "C°")
-    creadorDeElementosInfo('p', datosDelTiempo.main.temp_min, true, "Temperatura Mínima: ", "C°")
-    creadorDeElementosInfo('p', datosDelTiempo.main.temp_max, true, "Temperatura Máxima: ", "C°")
-    creadorDeElementosInfo('p', datosDelTiempo.main.humidity, false, "Humedad", "%");
+    crearElementoClima('p', datosDelTiempo.main.temp, true, "Temperatura: ", "C°")
+    crearElementoClima('p', datosDelTiempo.main.temp_min, true, "Temperatura Mínima: ", "C°")
+    crearElementoClima('p', datosDelTiempo.main.temp_max, true, "Temperatura Máxima: ", "C°")
+    crearElementoClima('p', datosDelTiempo.main.humidity, false, "Humedad", "%");
 }
 
 /**
@@ -61,7 +61,15 @@ function calcularGrados(kelvin) {
     return gradosCelsius;
 }
 
-function creadorDeElementosInfo(elemento, valorParam, necesitaConversion, textoInfo, textoFinal) {
+/**
+ * Función que crea un elemento, agrega información y la muestra en la pagina.
+ * @param {Element} elemento Element que se creará (p, h1, img...).
+ * @param {*} valorParam Valor numérico o información que se quiere mostrar.
+ * @param {Boolean} necesitaConversion Boolean para decidir si el valor necesita convertirse a celsius.
+ * @param {String} textoInfo Información antes de valorParam.
+ * @param {String} textoFinal Información después de valorParam.
+ */
+function crearElementoClima(elemento, valorParam, necesitaConversion, textoInfo, textoFinal) {
     // Crear Elemento
     let nuevoElemento = document.createElement(elemento);
 
@@ -77,6 +85,7 @@ function creadorDeElementosInfo(elemento, valorParam, necesitaConversion, textoI
     // Poner la info en el elemento
     nuevoElemento.textContent = `${textoInfo} ${valorElemento} ${textoFinal}`;
 
+    // Agregar elemento a la web
     weatherSection.appendChild(nuevoElemento);
 }
 
