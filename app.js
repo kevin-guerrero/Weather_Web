@@ -73,6 +73,9 @@ function pintarResultados(datosDelTiempo) {
     weatherSection.appendChild(gradosElemento);
     weatherSection.appendChild(gradosElementoTempMin);
     weatherSection.appendChild(gradosElementoTempMax);
+
+    // Pruebas
+    creadorDeElementosInfo('p', datosDelTiempo.main.humidity, false, "Humedad", "%");
 }
 
 /**
@@ -85,6 +88,25 @@ function calcularGrados(kelvin) {
     let gradosCelsius = Math.round(gradosSinRedondear);
 
     return gradosCelsius;
+}
+
+function creadorDeElementosInfo(elemento, valorParam, necesitaConversion, textoInfo, textoFinal) {
+    // Crear Elemento
+    let nuevoElemento = document.createElement(elemento);
+
+    // Convertir valor a celsius (Si es que es necesario)
+    let valorElemento;
+
+    if (necesitaConversion === true){
+        valorElemento = calcularGrados(valorParam);
+    }else {
+        valorElemento = valorParam;
+    };
+
+    // Poner la info en el elemento
+    nuevoElemento.textContent = `${textoInfo} ${valorElemento} ${textoFinal}`;
+
+    weatherSection.appendChild(nuevoElemento);
 }
 
 // Evento cuando el usuario introduce una ciudad
