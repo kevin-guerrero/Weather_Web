@@ -30,6 +30,7 @@ async function obtenerTiempo(ciudadBuscada) {
  */
 
 function pintarResultados(datosDelTiempo) {
+    weatherSection.innerHTML = "";
 
     // Mostrar descripción del clima
     datosDelTiempo.weather.forEach(clima => {
@@ -93,7 +94,7 @@ function crearElementoClima(elemento, valorParam, necesitaConversion, textoInfo,
 inputEnviar.addEventListener("click", async (event)=> {
     let inputUsuari = document.getElementById("busquedad").value;
     weatherSection.style.display = "block";
-    if(inputUsuari == "") {
+    if(inputUsuari.trim() === "") {
         weatherSection.innerHTML = `
         <div> 
             <h2> ERROR: No se ha introducido ninguna ciudad </h2>
@@ -103,6 +104,16 @@ inputEnviar.addEventListener("click", async (event)=> {
         return;
     }else {
         let datosJSON = await obtenerTiempo(inputUsuari);
-        pintarResultados(datosJSON);
+        if(datosJSON.cod === "404") {
+            weatherSection.innerHTML = `
+            <div> 
+                <h2> ERROR: No se ha encontrado la ciudad </h2>
+                <p> Por favor intentelo de nuevo con una <u> ciudad validad</u> . </p>
+            </div>
+            `;
+            return;
+        }else {
+            pintarResultados(datosJSON);
+        }
     }
 });
